@@ -1,0 +1,2 @@
+# express-angular-
+express后台的学习 现在学会了用get和post和前端angular进行通信 下一步主要目的加入mongoDB进行数据库的操作
