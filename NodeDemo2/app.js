@@ -7,9 +7,17 @@ var bodyParser = require('body-parser');
 
 var index = require('./routes/index');
 var users = require('./routes/users');
+//注册路由
+var register = require('./routes/register');
+//登录路由
+var login = require('./routes/Login');
 var cors = require('cors');
 var app = express();
 app.use(cors());
+//数据库的链接
+var mongoose = require("mongoose");
+mongoose.Promise = global.Promise;
+mongoose.connect("mongodb://localhost:27017/TicketProject");
 //设置跨域访问
 app.all('*', function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "http://localhost:63342");
@@ -34,7 +42,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 //加载处理请求的路由模块的参数
 app.use('/', index);
 app.use('/users', users);
-
+app.use('/register',register);
+app.use('/login',login);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
